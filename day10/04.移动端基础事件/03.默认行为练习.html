@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width" />
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#wrap{
+				background: deeppink;
+			}
+			#inner{
+				background: blue;
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+			长按wrap没有系统弹窗
+			长按inner有系统弹窗			
+		-->
+		<div id="wrap">
+			在我的后园，可以看见墙外有两株树，一株是枣树，还有一株也是枣树。 这上面的夜的天空，奇怪而高，我生平没有见过这样奇怪而高的天空。他仿佛要离
+			开人间而去，使人们仰面不再看见。然而现在却非常之蓝，闪闪地?着几十个星星的眼，冷眼。他的口角上现出微笑，似乎自以为大有深意，而将繁霜洒在我
+			的园里的野花草上。
+			<div id="inner">
+				We are all in the position of the farmer. If we plant a good seed, we reap a good harvest. If our seed
+ 				is poor and full of weeds, we reap a useless crop.
+			</div>
+		</div>
+	</body>
+	
+	<script type="text/javascript">
+		var wrap = document.getElementById('wrap');
+		var inner = document.getElementById('inner');
+		//长按wrap没有系统弹窗
+		wrap.addEventListener('touchstart',function(event){
+			//禁止默认行为
+			event.preventDefault();
+			console.log(11111111)
+		});
+		
+		//长按inner有系统弹窗		
+		inner.addEventListener('touchstart',function(event){
+			//取消冒泡
+			event.stopPropagation();
+			console.log(22222)
+		});
+	</script>
+</html>

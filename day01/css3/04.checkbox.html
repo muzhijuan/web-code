@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        input[type='checkbox']{
+            margin: 100px 0 0 100px;
+            width: 100px;
+            height: 100px;
+
+            /*checkbox:只能设置宽度和高度，不能设置背景颜色和边框*/
+            /*清除input的默认样式*/
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            
+            background: deeppink;
+            border: 10px solid yellow;
+
+            /*
+            浏览器   厂商前缀   浏览器内核
+            chrome  -webkit-   Webkit
+            firefox  -moz-     Gecko
+            IE       -ms-      Trident
+
+            属性加厂商前缀意义：
+                -webkit-appearance: none; 只在chrome生效
+                该属性属于实验阶段
+            */
+
+            /*外轮廓:只显示，不占位*/
+            outline: none;
+        }
+        input[type='checkbox']:checked{
+            background: greenyellow;
+        }
+    </style>
+</head>
+<body>
+
+<input type="checkbox">
+
+</body>
+</html>

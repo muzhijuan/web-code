@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box{
+            margin-left: 100px;
+            margin-top: 50px;
+            width: 200px;
+            height: 200px;
+            background: deeppink;
+
+            /* scale 写在 translate 之前，最终translate的数值也会进行缩放*/
+            transform: scale(0.5) translateX(200px);
+
+            /*scale 对于rotate 没有影响*/
+            transform: scale(0.5) rotate(45deg);
+            /*scale 对于skew 没有影响*/
+            transform:  scale(0.5) skew(45deg);
+
+            /*rotate设置完数值之后，元素左上角坐标点位置发生改变*/
+            transform: rotate(45deg) translateX(200px);
+
+            /*skew(45deg) 类似于平行四边形*/
+            transform: skew(45deg) translateX(200px);
+
+            transform: rotate(45deg) skew(45deg);
+        }
+        #box2{
+            margin-left: 100px;
+            margin-top: 50px;
+            width: 200px;
+            height: 200px;
+            background:yellowgreen;
+
+            transform: translateX(200px) scale(0.5);
+            transform: rotate(45deg) scale(0.5) ;
+            transform: skew(45deg) scale(0.5) ;
+
+            transform: translateX(200px) rotate(45deg) ;
+
+            transform:translateX(200px) skew(45deg) ;
+
+            transform: skew(45deg) rotate(45deg);
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<div id="box2"></div>
+</body>
+</html>

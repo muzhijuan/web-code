@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<!--视频-->
+<video src="media/demo.mp4" width="500" controls="controls"
+poster="img/timg.jpg" id="Myvideo"></video>
+
+<div>
+    <button id="playBtn">播放</button>
+    <button id="pauseBtn">暂停</button>
+</div>
+
+</body>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">
+    var Myvideo = document.getElementById('Myvideo');
+    var playBtn = document.getElementById('playBtn');
+    var pauseBtn = document.getElementById('pauseBtn');
+
+
+
+
+    //点击 播放 按钮，视频播放
+    playBtn.onclick = function () {
+//        play() 从当前位置播放
+        Myvideo.play();
+    };
+
+    //点击 暂停 按钮，视频停止
+    pauseBtn.onclick =  function () {
+        //    pause() 如果音频在播放中，则暂停播放。
+        Myvideo.pause();
+    };
+
+    // ontimeupdate 播放过程中实时触发。
+    Myvideo.ontimeupdate = function () {
+
+        //duration 音频总时长（返回未格式化的秒）
+//        console.log(timeFormatter(Myvideo.duration));
+        
+//        currentTime  音频已经播放时长（返回未格式化的秒）
+
+        console.log(timeFormatter(Myvideo.currentTime));
+    };
+    
+    //onvolumechange 声音改变时触发
+    Myvideo.onvolumechange = function () {
+//        volume： 0~1的任意值。控制音量。
+//        muted： 布尔值。静音。（ture表示静音，false表示非静音）
+        
+        console.log(Myvideo.volume);
+        console.log(Myvideo.muted);
+    };
+
+    //onloadedmetadata 当音频元数据加载完毕时触发。
+    Myvideo.onloadedmetadata = function () {
+        console.log('资源已经加载完成');
+    }
+
+</script>
+</html>

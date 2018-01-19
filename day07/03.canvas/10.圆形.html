@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            text-align: center;
+        }
+        #canvas{
+            background: rgba(200,0,0,0.3);
+
+            /*width: 500px;*/
+            /*height: 300px;*/
+        }
+
+        /*
+            canvas默认大小：300*150
+            inline_block
+        */
+    </style>
+</head>
+<body>
+
+<canvas id="canvas" width="500" height="300">您的浏览器不支持</canvas>
+
+</body>
+<script type="text/javascript">
+    var canvas = document.getElementById('canvas');
+
+    //定义画笔 === 获取上下文
+    var painting = canvas.getContext('2d');
+    //抬笔工作
+    painting.beginPath();
+
+    //圆
+    //参数1，参数2：圆心坐标
+    //参数3：半径
+    //参数4，参数5：起始角度，结束角度
+    //参数6：是顺时针(false)还是逆时针(true)  --- false默认值
+//    painting.arc(100,100,50,0,2*Math.PI);
+//    painting.arc(100,100,50,0,0.5*Math.PI);
+    //painting.arc(100,100,50,0.5*Math.PI,Math.PI); //顺时针
+
+//    painting.arc(100,100,50,0.5*Math.PI,Math.PI,true);
+//    painting.arc(100,100,50,0.5*Math.PI,Math.PI,false);
+
+    painting.arc(100,100,50,0.25*Math.PI,1.25*Math.PI,true);
+
+    painting.closePath();
+
+    painting.fillStyle = 'blue';
+    painting.fill();
+
+    painting.stroke();
+
+</script>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#box{
+				width: 100px;
+				height: 100px;
+				background: deeppink;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+	</body>
+	<!--
+		滚轮向上 == 盒子高度减小
+		滚轮向下 == 盒子高度增加		
+	-->
+	<!--
+		ie/chrome : onmousewheel(dom0)
+			event.wheelDelta
+				上：120
+				下：-120
+			
+		firefox : DOMMouseScroll 必须用(dom2的标准模式)
+			event.detail
+				上：-3
+				下：3
+	-->
+	<script type="text/javascript">
+		var box = document.getElementById('box');
+		
+		//ie/chrome
+		box.onmousewheel = fun;
+		//firefox
+		if(box.addEventListener){
+			box.addEventListener('DOMMouseScroll',fun);
+		};
+		
+		
+		
+		function fun(event){
+			event = event || window.event;
+			
+			if(event.wheelDelta){
+				//ie/chrome
+				//上：120
+				//下：-120
+				if(event.wheelDelta > 0){
+					//向上
+					box.style.height = box.offsetHeight - 10 + 'px';
+				}else{
+					//向下
+					box.style.height = box.offsetHeight + 10 + 'px';
+				};
+			}else if(event.detail){
+				//firefox
+				//上：-3
+				//下：3
+				if(event.detail < 0){
+					//向上
+					box.style.height = box.offsetHeight - 10 + 'px';
+				}else{
+					//向下
+					box.style.height = box.offsetHeight + 10 + 'px';
+				};
+			};
+			
+			
+		};
+		
+	</script>
+</html>

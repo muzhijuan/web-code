@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+            margin: 100px 0 0 100px;
+        }
+        ul li{
+            position: relative;
+            float: left;
+            width: 2px;
+            height: 8px;
+            background: #000;
+            margin-right: 5px;
+        }
+        ul li:nth-child(5n+1){
+            width: 4px;
+            height: 12px;
+        }
+        ul li:nth-child(10n+1){
+            height: 16px;
+
+            /*定义自增函数：计算函数*/
+            counter-increment: num;
+        }
+        ul li:nth-child(10n):before{
+
+            content: counter(num) "0";
+
+            position: absolute;
+            top:25px;
+            left: 0;
+        }
+        ul li:first-child:before{
+            content: '0';
+            position: absolute;
+            top:25px;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+<ul id="list">
+    <!--<li></li>-->
+</ul>
+</body>
+<script type="text/javascript">
+    var list = document.g etElementById('list');
+    var num = 100;
+    for (var i = 0; i <= num; i++) {
+        //创建li
+        var li = document.createElement('li');
+        list.appendChild(li);
+    }
+</script>
+</html>

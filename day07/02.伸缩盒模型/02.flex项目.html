@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #wrap{
+
+            height: 200px;
+            border-bottom: 5px solid green;
+            display: flex;
+
+            /*align-items: baseline;*/
+                /*其中一个伸缩项目基线改变，所有的伸缩项目都是沿着新的基线进行排列*/
+
+        }
+        .box{
+            /*width: 50%;*/
+            /*height: 100%;*/
+        }
+        .box1{
+            background: pink;
+            /*align-self: flex-start;*/
+            /*font-size: 16px;*/
+            /*排序order*/
+            /*order: 3;*/
+            flex-grow: 1;
+        }
+        .box2{
+            background: #debe0b;
+            /*align-self: flex-end;*/
+            /*align-self: center;*/
+            /*align-self: stretch;!*默认值*!*/
+            /*align-self: auto;!*继承*!*/
+            /*align-self: baseline;!*基线寻找盒子本身里面的基线位置*!*/
+            /*font-size: 16px;*/
+            flex-grow: 2;
+        }
+        .box3{
+            background: blueviolet;
+            flex-grow: 3;
+        }
+
+    </style>
+</head>
+<body>
+<!--容器-->
+<div id="wrap">
+    <!--项目-->
+    <div class="box box1">1</div>
+    <div class="box box2">2</div>
+    <div class="box box3">3</div>
+
+    <!--富裕空间-->
+</div>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 100px;
+            height: 100px;
+            background: deeppink;
+
+            /*transition-property:width ;*/
+            /*transition-duration: 1s;*/
+
+            /*transition-timing-function: ease;!*默认值：慢-快-慢*!*/
+            /*transition-timing-function: linear;*/
+
+            /*transition-timing-function: ease-in;*/
+            /*transition-timing-function: ease-out;*/
+            /*transition-timing-function: ease-in-out;*/
+            /*transition-timing-function: cubic-bezier(.23,-0.3,.98,-0.18);*/
+
+            /*transition-delay: 3s;*/
+
+            /*语法：transition ： property  duration  timing-function   delay；*/
+
+            transition: width 1s linear 3s,background 2s linear 3s;
+            transition: width 1s linear 3s,linear 2s;
+        }
+        #box:hover{
+            width: 500px;
+            background: yellowgreen;
+
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+</body>
+</html>

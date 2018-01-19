@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        img{
+            display: block;
+        }
+
+        #wrap{
+            margin: 100px auto;
+            position: relative;
+            overflow: hidden;
+        }
+        #cokeCan,#cokeBg{
+            position: absolute;
+            top:0;
+            left: 0;
+        }
+        #cokeBg{
+            top:10px;
+
+        }
+        #cokeBg img{
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <div id="cokeBg">
+        <img src="img/coke_bg.jpg" alt="">
+        <img src="img/coke_bg.jpg" alt="">
+    </div>
+    <div id="cokeCan">
+        <img src="img/coke_can.png" alt="">
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    window.onload = function () {
+        var wrap = document.getElementById('wrap');
+        var cokeCan = document.getElementById('cokeCan');
+        var cokeBg = document.getElementById('cokeBg');
+        var cokeBgImg = document.querySelectorAll('#cokeBg img');
+        var cokeBgImgW = cokeBgImg[0].offsetWidth;
+
+        var cokeBgWidth = cokeBgImgW * 2 ;
+        cokeBg.style.width = cokeBgWidth + 'px';
+
+        //求：cokeCan 的高度与宽度
+        //获取元素的高度与宽度
+        //offsetWidth = content-box + padding-box + border-box
+        //clientWidth = content-box + padding-box
+        var cokeCanW = cokeCan.offsetWidth;
+        var cokeCanH = cokeCan.offsetHeight;
+
+        //设置wrap的宽度与高度
+        wrap.style.width = cokeCanW + 'px';
+        wrap.style.height = cokeCanH + 'px';
+
+
+        //瓶体转动
+        var dis = 0;
+        setInterval(function () {
+            dis--;
+
+            //Math.abs() 绝对值
+            if(Math.abs(dis)>= cokeBgImgW){
+                dis = 0;
+            };
+
+            cokeBg.style.transform = 'translateX('+ dis +'px)';
+
+        },20);
+    };
+
+
+</script>
+</html>

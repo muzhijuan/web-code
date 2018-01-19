@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"/>
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#box{
+				width: 160px;
+				height: 160px;
+				background: deeppink;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<!--
+			UI: 320px
+			viewport：强制性的把屏幕宽度设计成图纸那么大
+			
+			width=320 === 大部分安卓手机不支持
+			initial-scale == ???
+		-->
+	</body>
+	<script type="text/javascript">
+		var width = document.documentElement.clientWidth; //375	
+		console.log(width);//375
+		
+		var targetW = 320;		
+		var scale = width/targetW;
+		
+//		var meta = document.createElement('meta');
+//		meta.setAttribute('name','viewport');
+		var meta = document.querySelector('meta[name="viewport"]');
+		meta.setAttribute('content','initial-scale='+ scale +',user-scalable=no');
+//		document.head.appendChild(meta);
+		
+	</script>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            text-align: center;
+        }
+        #canvas{
+            background: rgba(200,0,0,0.3);
+
+            /*width: 500px;*/
+            /*height: 300px;*/
+        }
+
+        /*
+            canvas默认大小：300*150
+            inline_block
+        */
+    </style>
+</head>
+<body>
+
+<canvas id="canvas" width="500" height="300">您的浏览器不支持</canvas>
+
+</body>
+<script type="text/javascript">
+    var canvas = document.getElementById('canvas');
+
+    //定义画笔 === 获取上下文
+    var painting = canvas.getContext('2d');
+    //抬笔工作
+    painting.beginPath();
+
+
+    var R = 100;
+
+    //元素实现平移
+    painting.translate(100,100);
+
+    //E点坐标
+    // R * cos(18) , -R * sin(18)
+    //R*Math.cos(18/180*Math.PI),-R*Math.sin(18/180*Math.PI)
+    //起始点
+    painting.moveTo(R*Math.cos(18/180*Math.PI),-R*Math.sin(18/180*Math.PI));
+
+    for (var i = 0;i<5;i++){
+        //外部五边形
+        painting.lineTo(R*Math.cos((54+72*i)/180*Math.PI),-R*Math.sin((54+72*i)/180*Math.PI))
+
+    };
+
+    painting.closePath();
+    painting.stroke();
+
+</script>
+</html>

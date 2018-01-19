@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #wrap{
+            margin: 100px;
+            width: 100px;
+            height: 100px;
+            border: 1px solid;
+            border-radius: 20px;
+
+            display: flex;
+            justify-content: space-around;
+            flex-direction: column;
+            padding: 8px 0;
+            box-sizing: border-box;
+
+        }
+        .box{
+            width: 20px;
+            height: 20px;
+            background: grey;
+            border-radius: 50%;
+        }
+        #top{
+            /*background: deeppink;*/
+            display: flex;
+            justify-content: space-around;
+        }
+        #bottom{
+            /*background: yellowgreen;*/
+            display: flex;
+            justify-content: space-around;
+        }
+        #center{
+            /*background: blue;*/
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <div id="top">
+        <div class="box box1"></div>
+        <div class="box box2"></div>
+    </div>
+    <div id="center">
+        <div class="box box5"></div>
+    </div>
+    <div id="bottom">
+        <div class="box box3"></div>
+        <div class="box box4"></div>
+    </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            text-align: center;
+        }
+        #canvas{
+            background: rgba(200,0,0,0.3);
+
+        }
+
+    </style>
+</head>
+<body>
+
+<canvas id="canvas" width="500" height="300">1111</canvas>
+
+</body>
+<script type="text/javascript">
+    var canvas = document.getElementById('canvas');
+
+    //获取上下文
+    var painting = canvas.getContext('2d');
+
+    painting.beginPath();
+
+    //线性渐变
+    //参数：起始点坐标与结束点坐标：控制渐变的方向，渐变范围
+    var LinearG = painting.createLinearGradient(0,0,0,150);
+    //添加渐变色
+    //参数1： 0-1之间的小数
+    LinearG.addColorStop(0,'red');
+    LinearG.addColorStop(0.5,'yellow');
+    LinearG.addColorStop(1,'green');
+
+    painting.fillStyle = LinearG;
+    painting.fillRect(0,0,300,300);
+
+
+//    painting.beginPath();
+//    painting.strokeRect(10,20,90,100);
+</script>
+</html>

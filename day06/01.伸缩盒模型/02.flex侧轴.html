@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #wrap{
+
+            height: 200px;
+            border-bottom: 5px solid green;
+            display: flex;
+            /*侧轴对齐方式*/
+            align-items: flex-start;
+            align-items: flex-end;
+            align-items: center;
+            align-items: stretch;/*伸缩项目拉伸*/
+            align-items: baseline;
+
+        }
+        /*
+            改变基线：
+                设置行高
+                设置字体大小
+        */
+        .box{
+
+        }
+        .box1{
+            background: pink;
+            font-size: 16px;
+        }
+        .box2{
+            background: #debe0b;
+        }
+        .box3{
+            background: blueviolet;
+        }
+
+    </style>
+</head>
+<body>
+<!--容器-->
+<div id="wrap">
+    <!--项目-->
+    <div class="box box1">1</div>
+    <div class="box box2">2</div>
+    <div class="box box3">3</div>
+    <!--富裕空间-->
+</div>
+
+</body>
+</html>

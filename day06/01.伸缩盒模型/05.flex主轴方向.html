@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #wrap{
+
+            height: 200px;
+            border-bottom: 5px solid green;
+            display: flex;
+
+            flex-direction: row;/*默认值*/
+            flex-direction: row-reverse;/*主轴start和end发生对调*/
+            flex-direction: column; /*主轴与侧轴发生对调，但是start和end没有发生改变*/
+            flex-direction: column-reverse;
+                /*主轴与侧轴发生对调，主轴start和end发生对调*/
+
+            /*justify-content: flex-start;*/
+            justify-content: flex-end;
+            align-items: flex-start;
+        }
+
+        .box{
+            /*width: 33.33333%;*/
+            /*width: 50%;*/
+        }
+        .box1{
+            background: pink;
+            font-size: 16px;
+        }
+        .box2{
+            background: #debe0b;
+        }
+        .box3{
+            background: blueviolet;
+        }
+
+    </style>
+</head>
+<body>
+<!--容器-->
+<div id="wrap">
+    <!--项目-->
+    <div class="box box1">1</div>
+    <div class="box box2">2</div>
+    <div class="box box3">3</div>
+    <!--富裕空间-->
+</div>
+
+</body>
+</html>

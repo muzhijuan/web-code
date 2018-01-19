@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            text-align: center;
+        }
+        #canvas{
+            background: rgba(200,0,0,0.3);
+
+        }
+
+    </style>
+</head>
+<body>
+
+<canvas id="canvas" width="500" height="300">1111</canvas>
+
+</body>
+<script type="text/javascript">
+    var canvas = document.getElementById('canvas');
+
+    //获取上下文
+    var painting = canvas.getContext('2d');
+
+    painting.beginPath();
+
+    //径向渐变
+    //参数：起始圆的圆心和半径，结束圆的圆心和半径
+//    var RadialG = painting.createRadialGradient(200,200,50,200,200,100);
+//    var RadialG = painting.createRadialGradient(200,200,100,200,200,50);
+
+//    var RadialG = painting.createRadialGradient(200,200,50,150,200,100);
+    var RadialG = painting.createRadialGradient(200,200,50,100,200,100);
+
+    //添加渐变色
+    //参数1： 0-1之间的小数
+    RadialG.addColorStop(0,'red');
+    RadialG.addColorStop(0.5,'yellow');
+    RadialG.addColorStop(1,'green');
+
+    painting.fillStyle = RadialG;
+    painting.fillRect(0,0,500,300);
+
+
+    painting.beginPath();
+    painting.arc(200,200,50,0,2*Math.PI);
+    painting.stroke();
+
+    painting.beginPath();
+    painting.arc(100,200,100,0,2*Math.PI);
+    painting.stroke();
+
+</script>
+</html>

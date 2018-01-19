@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#box{
+				position: absolute;
+				width: 200px;
+				height: 200px;
+				background: deeppink;
+			}
+			#others{
+				position: absolute;
+				top: 250px;
+				left: 500px;
+				width: 200px;
+				height: 200px;
+				background: yellowgreen;
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+			元素最终位置 = 元素初始位置 + 鼠标距离差
+		-->
+		<div id="box">123</div>
+		<div id="others"></div>
+	</body>
+	<script type="text/javascript">
+		var box = document.getElementById('box');
+		//定义元素初始位置
+		var eleP = {left:0,top:0};
+		//定义鼠标初始位置
+		var mouseStart = {left:0,top:0};
+		
+		//鼠标按下
+		box.onmousedown = function(event){
+			
+//			console.log(11111)
+			//元素初始位置
+			eleP.left = box.offsetLeft;
+			eleP.top = box.offsetTop;
+			//鼠标初始位置
+			mouseStart.left = event.clientX;
+			mouseStart.top = event.clientY;
+			
+			
+			//鼠标发生移动
+			document.onmousemove = function(event){
+//				console.log(2222)
+				//鼠标结束位置
+				var mouseEnd = {left:0,top:0};
+				mouseEnd.left = event.clientX;
+				mouseEnd.top = event.clientY;
+				//鼠标距离差
+				var disX = mouseEnd.left - mouseStart.left;
+				var disY = mouseEnd.top - mouseStart.top;
+				
+				//元素最终位置
+				box.style.left = disX + eleP.left + 'px';
+				box.style.top = disY + eleP.top + 'px';
+			};
+			//鼠标抬起
+			document.onmouseup = function(){
+				//清除onmousemove
+				//dom0 解绑
+				document.onmousemove = null;
+				document.onmouseup = null;
+			};
+			
+			//取消系统默认行为
+			return false;
+		};
+		
+		
+		
+		
+	</script>
+</html>

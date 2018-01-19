@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            text-align: center;
+        }
+        #canvas{
+            background: rgba(200,0,0,0.3);
+
+        }
+
+    </style>
+</head>
+<body>
+
+<canvas id="canvas" width="500" height="300">1111</canvas>
+
+</body>
+<script type="text/javascript">
+    var canvas = document.getElementById('canvas');
+
+    //获取上下文
+    var painting = canvas.getContext('2d');
+
+    painting.beginPath();
+
+    //准备img标签
+    var imgDom = new Image();
+    //src 图片路径
+    imgDom.src = 'img/1.png';
+
+    //drawImage
+    //参数1：img对象
+    //参数2，参数3：图片起始点坐标
+    //参数4，参数5：图片宽度和高度
+    imgDom.onload = function () {
+        painting.drawImage(imgDom,0,0,200,50);
+        painting.fill();
+    };
+
+
+
+</script>
+</html>

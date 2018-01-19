@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			html,body{
+				height: 100%;
+				overflow: hidden;
+			}
+			#wrap{
+				position: absolute;
+				top: 0;
+				right: 0;
+				width: 40px;
+				height: 100%;
+				background: gray;
+			}
+			#inner{
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 40px;
+				height: 60px;
+				background: deeppink;
+			}
+			#content{
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="content"></div>
+		<div id="wrap">
+			<div id="inner"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var inner = document.getElementById('inner');
+		var content = document.getElementById('content');
+		
+		for (var i=0;i<1000;i++) {
+			content.innerHTML += i + '<br>';
+		};
+		
+		//高度
+		var scaleH = document.documentElement.clientHeight / content.offsetHeight;
+		inner.style.height = scaleH * document.documentElement.clientHeight + 'px';
+		
+		var eleY = 0;
+		var startY = 0;
+		
+		inner.onmousedown = function(event){
+			event = event || window.event;
+			
+			eleY = inner.offsetTop;
+			startY = event.clientY;
+						
+			document.onmousemove = function(event){
+				event = event || window.event;
+				var endY = event.clientY;
+				var disY = endY - startY;
+				
+				var top = disY + eleY;
+				if(top < 0){
+					top = 0;
+				}else if(top > document.documentElement.clientHeight - inner.offsetHeight){
+					top = document.documentElement.clientHeight - inner.offsetHeight;
+				};
+				inner.style.top = top + 'px';
+				
+//				var scale = top/(document.documentElement.clientHeight - inner.offsetHeight);
+//				var H = content.offsetHeight - document.documentElement.clientHeight;
+//				
+//				content.style.top = -scale * H + 'px';
+				//内容偏移量 = 滚动条的偏移量 / scale1
+				content.style.top = -top / scaleH + 'px';
+				
+			};
+			document.onmouseup = function(){
+				document.onmousemove =  document.onmouseup = null;
+			};
+			return false;
+		};
+		
+		
+	</script>
+</html>

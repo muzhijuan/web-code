@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"/>
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+	</head>
+	<body>
+		<div id="wrap">
+			<header id="header">
+				<!--头部上半部-->
+				<div id="headerTop">
+					<!--logo-->
+					<h1 id="logo">
+						<a href="###">
+							<img src="img/logo.png"/>
+						</a>
+					</h1>
+					<!--菜单按钮-->
+					<a href="###" id="menuBtn" class="menuBtnClose"></a>
+					<!--按钮区域-->
+					<div id="navs">
+						<a href="###" id="searchBtn">搜索</a>
+						<a href="###">登录</a>
+						<a href="###">注册</a>
+					</div>
+				</div>
+				<!--头部下半部-->
+				<form id="search">
+					<input type="text" placeholder="请输入内容。。。"/>
+					<input type="submit" value="搜索"/>
+				</form>
+				<!--遮罩层-->
+				<ul id="list">
+					<li>
+						<a href="javascript:;">首页</a>
+					</li>
+					<li>
+						<a href="javascript:;">MV</a>
+					</li>
+					<li>
+						<a href="javascript:;">悦单</a>
+					</li>
+					<li>
+						<a href="javascript:;">V榜</a>
+					</li>
+					<li>
+						<a href="javascript:;">音悦</a>
+					</li>
+					<li>
+						<a href="javascript:;">商城</a>
+					</li>
+					<li>
+						<a href="javascript:;">节目</a>
+					</li>
+					<li>
+						<a href="javascript:;">饭团</a>
+					</li>
+					<li>
+						<a href="javascript:;">资讯</a>
+					</li>
+					<li>
+						<a href="javascript:;">我的家</a>
+					</li>
+					<li>
+						<a href="javascript:;">APP下载</a>
+					</li>
+					<li>
+						<a href="javascript:;">热门应用</a>
+					</li>
+				</ul>
+			
+			</header>
+			<!--导航-->
+			<nav id="navsWrap">
+				<ul id="navsList">
+					<li class="active">
+						<a href="javascript:;">首页</a>
+					</li>
+					<li>
+						<a href="javascript:;">MV</a>
+					</li>
+					<li>
+						<a href="javascript:;">悦单</a>
+					</li>
+					<li>
+						<a href="javascript:;">V榜</a>
+					</li>
+					<li>
+						<a href="javascript:;">音悦</a>
+					</li>
+					<li>
+						<a href="javascript:;">商城</a>
+					</li>
+					<li>
+						<a href="javascript:;">节目</a>
+					</li>
+					<li>
+						<a href="javascript:;">饭团</a>
+					</li>
+					<li>
+						<a href="javascript:;">资讯</a>
+					</li>
+					<li>
+						<a href="javascript:;">我的家</a>
+					</li>
+					<li>
+						<a href="javascript:;">APP下载</a>
+					</li>
+					<li>
+						<a href="javascript:;">热门应用</a>
+					</li>
+				</ul>
+			
+			</nav>
+			
+			
+		</div>		
+	</body>
+	<script type="text/javascript">
+		//阻止默认行为
+		document.addEventListener('touchstart',function(event){
+			event.preventDefault();
+		});
+		
+		//rem适配
+		(function(){
+			var width = document.documentElement.clientWidth;
+			var styleNode = document.createElement('style');
+			styleNode.innerHTML = 'html{font-size: '+ width/16 +'px !important;}';
+			document.head.appendChild(styleNode);
+		})();
+		
+		
+		//菜单按钮
+		changeMenu();
+		function changeMenu(){
+			var menuBtn = document.getElementById('menuBtn');
+			var list = document.getElementById('list');
+			
+			menuBtn.addEventListener('touchstart',function(event){
+				if(menuBtn.className == 'menuBtnClose'){
+					menuBtn.className = 'menuBtnOpen';
+					list.style.display = 'block';
+					
+//					console.log(1111111)
+					
+				}else if(menuBtn.className == 'menuBtnOpen'){
+					menuBtn.className = 'menuBtnClose';
+					list.style.display = 'none';
+				};
+				
+				//取消冒泡
+				event.stopPropagation();
+			});
+			
+			document.addEventListener('touchstart',function(){
+				if(menuBtn.className == 'menuBtnOpen'){
+					
+//					console.log(222222222)
+					menuBtn.className = 'menuBtnClose';
+					list.style.display = 'none';
+				};
+				
+			});
+			
+			list.addEventListener('touchstart',function(event){
+				//取消冒泡
+				event.stopPropagation();
+//				console.log(333333)
+			});
+			
+		};
+		
+		
+		
+		
+		
+		
+	</script>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"/>
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			html,body{
+				height: 100%;
+				overflow: hidden;
+			}
+			#wrap{
+				width: 100%;
+				height: 100%;
+			}
+			#box{
+				width: 200px;
+				height: 200px;
+				background: deeppink;
+				margin: 100px auto 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<div id="box"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		document.addEventListener('touchstart',function(event){
+			event.preventDefault();
+		});
+		
+		var box = document.getElementById('box');
+		//逻辑部分
+		var callback = {
+			start:function(){
+				box.style.background = 'yellow';
+			},
+			change:function(){
+				box.innerHTML += 'change<br>';
+			},
+			end:function(){
+				box.style.background = 'pink';
+				box.innerHTML = '';
+			}
+		};
+		
+		//多指功能
+		gesture(box,callback);
+		function gesture(node,callback){
+			var flag = false;
+			//gesturestart手指触碰当前元素，屏幕上有两个或者两个以上的手指
+			node.addEventListener('touchstart',function(event){
+				var touch = event.touches;				
+				if(touch.length >= 2){
+					//gesturestart
+					flag = true;
+					if(callback && callback['start']){
+						callback['start']();
+					};
+				};
+			});
+			//gesturechange手指触碰当前元素，屏幕上有两个或者两个以上的手指位置在发生移动
+			node.addEventListener('touchmove',function(event){
+				var touch = event.touches;	
+				if(touch.length >= 2){
+					//gesturechange
+					if(callback && callback['change']){
+						callback['change']();
+					};
+				};				
+			});
+			//gestureend  在gesturestart后, 屏幕上只剩下两根以下（不包括两根）的手指
+			node.addEventListener('touchend',function(event){
+				var touch = event.touches;	
+				if(flag){
+					if(touch.length < 2){
+						//gestureend 
+						if(callback && callback['end']){
+							callback['end']();
+						};
+					};					
+				};	
+				//重置
+				flag = false;
+			});
+									
+		};
+		
+		
+		
+	</script>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background: #666666;
+        }
+        #wrap {
+            position: relative;
+            margin: 100px auto;
+            width: 200px;
+            height: 300px;
+            background: rgba(200,0,0,0.5);
+
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        #page1,#page2,#page3,#page4{
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 200px;
+            height: 300px;
+
+            transform-origin: left;
+            transform-style: preserve-3d;
+
+        }
+        #page1{
+            background: yellow;
+            z-index: 4;
+        }
+        #page2{
+            background: yellowgreen;
+            z-index: 3;
+        }
+        #page3{
+            background: pink;
+            z-index: 2;
+        }
+        #page4{
+            background: blue;
+            z-index: 1;
+        }
+        #page4 img{
+            width: 100%;
+            height: 100%;
+        }
+        .back,.front{
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 200px;
+            height: 300px;
+
+            border: 10px solid white;
+            box-sizing: border-box;
+        }
+        .back{
+            transform: rotateY(180deg);
+        }
+        .front{
+            backface-visibility: hidden;
+        }
+        .back img,.front img{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <!--第一页-->
+    <div id="page1">
+        <!--页面后边-->
+        <div class="back">
+            <img src="img/01.jpg" alt="">
+        </div>
+        <!--页面前边-->
+        <div class="front">
+            <img src="img/02.jpg" alt="">
+        </div>
+    </div>
+    <!--第二页-->
+    <div id="page2">
+        <!--页面后边-->
+        <div class="back">
+            <img src="img/03.jpg" alt="">
+        </div>
+        <!--页面前边-->
+        <div class="front">
+            <img src="img/04.jpg" alt="">
+        </div>
+    </div>
+    <!--第三页-->
+    <div id="page3">
+        <!--页面后边-->
+        <div class="back">
+            <img src="img/05.jpg" alt="">
+        </div>
+        <!--页面前边-->
+        <div class="front">
+            <img src="img/06.jpg" alt="">
+        </div>
+    </div>
+    <!--第四页-->
+    <div id="page4">
+        <div class="front">
+            <img src="img/07.jpg" alt="">
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    window.onload = function () {
+
+        var wrap = document.getElementById('wrap');
+        var pages = document.querySelectorAll('#wrap>div');
+
+        var index = 0;
+        wrap.onclick = function () {
+            //第一页进行翻页
+            pages[index].style.transform = 'rotateY(-180deg)';
+            pages[index].style.transition = '2s transform';
+
+            pages[index].addEventListener('transitionEnd',funn);
+            pages[index].addEventListener('webkitTransitionEnd',funn);
+            console.log(pages[index]);
+
+            function funn(){
+                //第一次点击时，第一页元素z-index （任意值 >=0） =1;
+                if(index == 0){
+                    pages[0].style.zIndex = '1';
+                    console.log(111111);
+                }else if(index == 1){
+                    //第二次点击时，第二页元素z-index = 2(比1大即可) ，第一页元素 = 1;
+                    pages[0].style.zIndex = '1';
+                    pages[1].style.zIndex = '2';
+                    console.log(222222);
+                }else if(index == 2){
+                    //第三次点击时，第三页元素z-index = 3 ，第二页元素 =2，第一页元素 = 1;
+                    pages[0].style.zIndex = '1';
+                    pages[1].style.zIndex = '2';
+                    pages[2].style.zIndex = '3';
+                };
+
+
+
+                pages[index].removeEventListener('transitionEnd',funn);
+                pages[index].removeEventListener('webkitTransitionEnd',funn);
+
+                index++;
+
+            };
+
+            //console.log(index);
+
+
+
+
+            if(index == 3){
+                //元素收回来
+                for (var i = 0; i < pages.length; i++) {
+                    pages[i].style.transform = 'rotateY(0deg)';
+                    pages[i].style.transition = '2s '+ (0.2*(pages.length-1-i) )+ 's';
+
+                    //z-index 重置
+
+                    this.addEventListener('transitionEnd',fun);
+                    this.addEventListener('webkitTransitionEnd',fun);
+                    
+                    function fun() {
+                        pages[0].style.zIndex = '4';
+                        pages[1].style.zIndex = '3';
+                        pages[2].style.zIndex = '2';
+                        pages[3].style.zIndex = '1';
+
+                        //解绑
+                        this.removeEventListener('transitionEnd',fun);
+                        this.removeEventListener('webkitTransitionEnd',fun);
+                    };
+
+
+                };
+
+                index = 0;
+
+            };
+
+        };
+
+    };
+    
+    
+</script>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            text-align: center;
+        }
+        #Mycanvas{
+            border: 1px solid;
+            background-image: url("img/timg.jpg");
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+
+            vertical-align: middle;
+        }
+        #Myvideo{
+            display: none;
+        }
+        #box{
+            margin: 0 auto 30px;
+            width: 502px;
+            height: 30px;
+
+        }
+        #inner{
+            width: 0px;
+            height: 30px;
+            background: linear-gradient(to right,transparent,orange);
+        }
+    </style>
+</head>
+<body>
+
+<!--视频-->
+<video src="media/demo.mp4" width="500" id="Myvideo"></video>
+
+<canvas id="Mycanvas" width="500" height="300"></canvas>
+<!--进度条-->
+<div id="box">
+    <div id="inner"></div>
+</div>
+
+<div>
+    <button id="playBtn">播放</button>
+    <button id="pauseBtn">暂停</button>
+</div>
+
+</body>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">
+    var Myvideo = document.getElementById('Myvideo');
+    var playBtn = document.getElementById('playBtn');
+    var pauseBtn = document.getElementById('pauseBtn');
+    var box = document.getElementById('box');
+    var boxW = box.offsetWidth;
+    var inner = document.getElementById('inner');
+
+    var timer = null;
+    var speed = 500;
+
+    var Mycanvas = document.getElementById('Mycanvas');
+    var painting = Mycanvas.getContext('2d');
+    painting.beginPath();
+
+
+
+    //点击 播放 按钮，视频播放
+    playBtn.onclick = function () {
+//        play() 从当前位置播放
+        Myvideo.play();
+
+        auto();
+
+    };
+
+    //点击 暂停 按钮，视频停止
+    pauseBtn.onclick =  function () {
+        //    pause() 如果音频在播放中，则暂停播放。
+
+        clearInterval(timer);
+        Myvideo.pause();
+    };
+
+    function auto() {
+        timer = setInterval(function () {
+            painting.drawImage(Myvideo,0,0,500,300);
+
+            //矩形
+            painting.beginPath();
+            painting.fillStyle = 'rgba(200,0,0,0.5)';
+            painting.fillRect(0,250,500,50);
+
+            //文字
+            painting.beginPath();
+            painting.font = 'bold 30px 微软雅黑';
+            painting.fillStyle = 'white';
+            painting.fillText('a枣树',speed,285);
+
+            speed--;
+            if(speed < -100){
+                speed = 500;
+            };
+
+            //盒子显示
+            box.style.background = 'gray';
+
+        },30);
+    };
+    
+    //ontimeupdate 播放过程中实时触发。
+    Myvideo.ontimeupdate = function () {
+        //duration 音频总时长（返回未格式化的秒）
+        var durTime = Myvideo.duration;
+        // currentTime  音频已经播放时长（返回未格式化的秒）
+        var nowTime = Myvideo.currentTime;
+
+        var time = nowTime/durTime * 100;
+//        inner.style.width = time * boxW  + 'px';
+        inner.style.width = time + '%';
+    };
+
+</script>
+</html>

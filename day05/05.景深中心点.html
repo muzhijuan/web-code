@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #wrap {
+            margin: 100px auto;
+            width: 200px;
+            height: 200px;
+            background: rgba(200,0,0,0.3);
+
+            transform-style: preserve-3d;
+            perspective: 300px;
+
+            perspective-origin: top right;
+            perspective-origin:left;
+            perspective-origin:30% 70%;
+            perspective-origin: 60px 140px;
+        }
+        #box{
+            width: 200px;
+            height: 200px;
+            background: blue;
+
+            transform: translateZ(-100px);
+        }
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <div id="box">111</div>
+</div>
+</body>
+</html>

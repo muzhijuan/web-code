@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            text-align: center;
+        }
+        #canvas{
+            background: rgba(200,0,0,0.3);
+
+            /*width: 500px;*/
+            /*height: 300px;*/
+        }
+
+        /*
+            canvas默认大小：300*150
+            inline_block
+        */
+    </style>
+</head>
+<body>
+
+<canvas id="canvas" width="500" height="300">您的浏览器不支持</canvas>
+
+</body>
+<script type="text/javascript">
+    var canvas = document.getElementById('canvas');
+
+    //定义画笔 === 获取上下文
+    var painting = canvas.getContext('2d');
+    //抬笔工作
+        painting.beginPath();
+
+    painting.moveTo(50,50);
+    painting.lineTo(50,200);
+    painting.lineTo(200,200);
+    painting.lineTo(200,50);
+
+//    painting.lineTo(50,50);
+    //首尾相连
+    painting.closePath();
+
+    painting.stroke();
+
+</script>
+</html>

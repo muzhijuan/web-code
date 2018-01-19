@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"/>
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			html,body{
+				height: 100%;
+				overflow: hidden;
+			}
+			#wrap{
+				position: relative;
+			}
+			
+			#list{
+				position: absolute;
+				top: 0;
+				left: 0;
+				list-style: none;
+				overflow: hidden;
+				/*width: 500%;*/
+			}
+			#list li{
+				float: left;
+				/*width: 20%;*/
+			}
+			#list li img{
+				display: block;
+				width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<ul id="list">
+				<li>
+					<a href="###">
+						<img src="img/1.jpg"/>
+					</a>
+				</li>
+				<li>
+					<a href="###">
+						<img src="img/2.jpg"/>
+					</a>
+				</li>
+				<li>
+					<a href="###">
+						<img src="img/3.jpg"/>
+					</a>
+				</li>
+				<li>
+					<a href="###">
+						<img src="img/4.jpg"/>
+					</a>
+				</li>
+				<li>
+					<a href="###">
+						<img src="img/5.jpg"/>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		//清除默认行为
+		document.addEventListener('touchstart',function(event){
+			event.preventDefault();
+		});
+		
+		window.onload = function(){
+			//获取元素
+			var wrap = document.getElementById('wrap');
+			var list = document.getElementById('list');
+			var liNodes = document.querySelectorAll('#list li');
+						
+			//布局样式
+			var styleNode = document.createElement('style');
+			styleNode.innerHTML = '#list{width: '+ liNodes.length +'00%;}';
+			styleNode.innerHTML += '#list li{width: '+ 100/liNodes.length +'%;}';
+			styleNode.innerHTML += '#wrap{height: '+ liNodes[0].offsetHeight +'px;}';				
+			document.head.appendChild(styleNode);
+			 
+			//滑动屏幕
+			//定义元素初始位置
+			var eleX = 0;
+			//定义手指初始位置
+			var startX = 0;
+			var disX = 0;
+			wrap.addEventListener('touchstart',function(event){
+				var touch = event.changedTouches[0];
+				//元素初始位置
+				eleX = list.offsetLeft;
+				//手指初始位置
+				startX = touch.clientX;
+			});
+			wrap.addEventListener('touchmove',function(event){
+				var touch = event.changedTouches[0];
+				//定义手指结束位置
+				var endX = touch.clientX;
+				//手指距离差
+				disX = endX - startX;
+				
+				//确定元素位置
+				list.style.left = eleX + disX + 'px';
+			});
+			//图片跳转
+			wrap.addEventListener('touchend',function(){
+				//定义图片索引下标
+				var now = 0;
+				var left = list.offsetLeft;
+				//向左  disX<0  now增加   left减小
+//				if(disX<0){
+//					now = Math.ceil(-left /document.documentElement.clientWidth);
+//				}else{
+//					//向右  disX>0  now减小   left增加
+//					now = Math.floor(-left/document.documentElement.clientWidth);
+//				};
+				
+				now = Math.round(-left/document.documentElement.clientWidth);
+				
+				//范围限定
+				if(now < 0){
+					now = 0;				
+				}else if(now > liNodes.length-1){
+					now = liNodes.length-1
+				};
+				
+				list.style.left = -now*document.documentElement.clientWidth + 'px';
+			});
+		};
+	</script>
+</html>

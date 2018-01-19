@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			html,body{
+				height: 100%;
+				overflow: hidden;
+			}
+			img{
+				display: block;
+			}
+			ul{
+				list-style: none;
+			}
+			#header{
+				width: 100%;
+				height: 2rem;
+				line-height: 2rem;
+				background: rgba(0,0,0,.8);
+				text-align: center;
+				color: #fff;
+				font-size: 0.8rem;
+				font-family: '宋体';
+			}
+			#wrap{
+				position: absolute;
+				top: 2rem;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				
+			}
+			#list{
+				overflow: hidden;
+			}
+			#list li{
+				float: left;
+				width: 7rem;
+				height: 7rem;
+				margin: 0.5rem;
+				
+				
+			}
+			#list li img{
+				width: 100%;
+				border-radius: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<!--头部-->
+		<header id="header">三国女将</header>
+		<!--包裹区-->
+		<div id="wrap">
+			<!--内容区-->
+			<div id="content">
+				<!--图片列表-->
+				<ul id="list">
+					<!--<li>
+						<img src="img/1.jpg"/>
+					</li>-->
+					
+				</ul>
+				<!--加载更多-->
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		//取消默认行为
+		document.addEventListener('touchstart',function(event){
+			event.preventDefault();
+		});
+		
+		//rem适配
+		(function(){
+			var width = document.documentElement.clientWidth;
+			var styleNode = document.createElement('style');
+			styleNode.innerHTML = 'html{font-size: '+ width/16 +'px !important;}';
+			document.head.appendChild(styleNode);
+		})();
+		
+		
+		//准备图片资源
+		var urlArr = [];   //img/1.jpg
+		for (var i=0;i<100;i++) {
+			urlArr.push('img/'+ (i%18+1) +'.jpg');
+		};
+		//console.log(urlArr);
+		
+		//获取元素
+		var list = document.getElementById('list');
+		
+		
+		var length = 12;
+		//每次创建li的起始值
+		var start = 0;
+		
+		//创建li
+		createLi();
+		function createLi(){
+			var end = length+start;
+			
+			for (var i=start;i<end;i++) {
+				var li = document.createElement('li');
+				
+				list.appendChild(li);
+			}
+			start = end;
+			
+		};
+		
+	</script>
+</html>

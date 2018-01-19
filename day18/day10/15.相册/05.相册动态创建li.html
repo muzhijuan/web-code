@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			html,body{
+				height: 100%;
+				overflow: hidden;
+			}
+			img{
+				display: block;
+			}
+			ul{
+				list-style: none;
+			}
+			#header{
+				width: 100%;
+				height: 2rem;
+				line-height: 2rem;
+				background: rgba(0,0,0,.8);
+				text-align: center;
+				color: #fff;
+				font-size: 0.8rem;
+				font-family: '宋体';
+			}
+			#wrap{
+				position: absolute;
+				top: 2rem;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				
+				/*子元素从父元素中溢出*/
+				overflow: hidden;
+				
+			}
+			#content{
+				position: relative;
+			}
+			#list{
+				overflow: hidden;
+			}
+			#list li{
+				float: left;
+				width: 7rem;
+				height: 7rem;
+				margin: 0.5rem;
+				background-color: #EEEEEE;
+				border-radius: 10px;
+				background-image: url(img/loadingImg.gif);
+				background-repeat: no-repeat;
+				background-position: center;
+			}
+			#list li img{
+				width: 100%;
+				border-radius: 10px;
+				opacity: 0;
+			}
+			#footer{
+				position: absolute;
+				left: 0;
+				right: 0;
+				bottom: -4rem;
+				height: 4rem;
+				line-height: 4rem;
+				font-size: 0.8rem;
+				font-family: '宋体';
+				text-align: center;
+				/*background: deeppink;*/
+			}
+			
+		</style>
+	</head>
+	<body>
+		<!--头部-->
+		<header id="header">三国女将</header>
+		<!--包裹区-->
+		<div id="wrap">
+			<!--内容区-->
+			<div id="content">
+				<!--图片列表-->
+				<ul id="list">
+					<!--<li>
+						<img src="img/1.jpg"/>
+					</li>-->
+					
+				</ul>
+				<!--加载更多-->
+				<div id="footer">上划加载更多</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/transformCss.js"></script>
+	<script type="text/javascript" src="js/drag.js"></script>
+	<script type="text/javascript">
+		//取消默认行为
+		document.addEventListener('touchstart',function(event){
+			event.preventDefault();
+		});
+		
+		//rem适配
+		(function(){
+			var width = document.documentElement.clientWidth;
+			var styleNode = document.createElement('style');
+			styleNode.innerHTML = 'html{font-size: '+ width/16 +'px !important;}';
+			document.head.appendChild(styleNode);
+		})();
+		
+		
+		//准备图片资源
+		var urlArr = [];   //img/1.jpg
+		for (var i=0;i<20;i++) {
+			urlArr.push('img/'+ (i%18+1) +'.jpg');
+		};
+		//console.log(urlArr);
+		
+		//获取元素
+		var wrap = document.getElementById('wrap');
+		var header = document.getElementById('header');
+		var list = document.getElementById('list');
+		var footer = document.getElementById('footer');
+		var footerH = footer.offsetHeight;
+		var isBottom = false;
+		
+		//底部隐藏
+		transformCss(footer,'scale',0);
+		
+		
+		var length = 12;
+		//每次创建li的起始值
+		var start = 0;
+		
+		//创建li
+		createLi();
+		function createLi(){
+			//li范围限定
+			if(start >= urlArr.length){
+				return;
+			};
+						
+			var end = length+start;
+			
+			end = end > urlArr.length ? urlArr.length : end;
+			
+			for (var i=start;i<end;i++) {
+				var li = document.createElement('li');
+				
+				//绑定路径
+				li.aaa = urlArr[i];
+				//i=0;   li[0].aaa = urlArr[0] = 'img/1.jpg';
+				
+				//li上到底有没有图片
+				li.isImg = false;
+				
+				list.appendChild(li);
+			}
+			start = end;
+			
+			//懒加载
+			lazyLoad();
+		};
+		
+		function lazyLoad(){
+			var headerHeight = header.offsetHeight;
+			var maxHeight = document.documentElement.clientHeight;
+			
+			//获取li
+			var liNodes = document.querySelectorAll('#list li');
+			
+			for (var i=0;i<liNodes.length;i++) {
+				var liHeight = liNodes[i].getBoundingClientRect().top;
+				
+				//懒加载判断
+				if(!liNodes[i].isImg && headerHeight < liHeight && liHeight < maxHeight){
+					//创建img
+					createImg(liNodes[i]);
+					liNodes[i].isImg = true;
+				};
+			};
+					
+		};
+		
+		//创建img
+		function createImg(li){
+			var img = new Image();
+			img.src = li.aaa; //li[0].aaa = urlArr[0] = 'img/1.jpg'
+			
+			//onload：当资源加载完成之后触发
+			img.onload = function(){
+				img.style.opacity = '1';
+			};
+						
+			//transition在元素没有渲染完的情况下,是不会触发的	
+			img.style.transition = '1s opacity';
+				
+			//onerror:当资源加载失败的时候触发
+			img.onerror = function(){
+				console.log('图片没有了')
+			};
+			
+			li.appendChild(img);
+		};
+		
+		
+		//元素动起来
+		var callback = {
+			start:function(){
+				//判断到底在不在底部
+				var H = content.offsetHeight - wrap.clientHeight;
+				var h = transformCss(content,'translateY');
+				
+				if(Math.abs(h) >= H){
+					//在底部
+					isBottom = true;
+				};
+			},
+			move:function(){
+				//在底部之后，footer才出来
+				if(isBottom){
+					var H = content.offsetHeight - wrap.clientHeight;
+					var h = transformCss(content,'translateY');
+					var x = Math.abs(h) - H;
+					
+					var footerScale = x/footerH;
+					
+					footerScale = footerScale > 1 ? 1 : footerScale;
+					
+//					if(footerScale > 1){
+//						footerScale = 1;
+//					}else{
+//						footerScale = footerScale
+//					}
+										
+					transformCss(footer,'scale',footerScale)
+				};
+				
+				//懒加载
+				lazyLoad();
+			},	
+			//touchend
+			over:function(){
+				//手指抬起那一刻
+				
+				
+				//在底部
+				//footer区域全部出来
+				var H = content.offsetHeight - wrap.clientHeight;
+				var h = transformCss(content,'translateY');
+				var x = Math.abs(h) - H;
+					
+				if(isBottom && x>=footerH ){
+					//创建新的li
+					createLi();
+					//不需要回弹   --- 除定时器
+					clearInterval(wrap.timer);
+				};
+				
+				
+			}//,
+			//end:function(){
+				//元素停止那一刻
+			//}
+			
+			
+		};
+		
+		dragNav(wrap,callback);
+		
+	</script>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width"/>
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#box{
+				width: 200px;
+				height: 200px;
+				background: deeppink;
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+			手指列表：			
+			changedTouches 目标元素上目标事件上的手指列表
+			targetTouches  目标元素上的手指列表
+			touches		    屏幕上的手指列表
+		-->
+		<div id="box"></div>
+	</body>
+	<script type="text/javascript">
+		var box = document.getElementById('box');
+		
+		box.addEventListener('touchend',function(event){
+			//手指距离视口的距离
+//			event.changedTouches[0].clientX;
+//			event.changedTouches[0].clientY;
+			
+			console.log(event.changedTouches[0].clientX,event.changedTouches[0].clientY)
+			
+			
+		})
+		
+	</script>
+</html>

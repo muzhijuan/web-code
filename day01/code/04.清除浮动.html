@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #wrap{
+            /*float: left;*/
+            /*position: fixed;*/
+            /*overflow: hidden;*/
+            margin: 0 auto;
+            width: 300px;
+            background: deeppink;
+            border: 5px solid;
+        }
+        #box{
+            float: left;
+            width: 200px;
+            height: 200px;
+            background: yellowgreen;
+        }
+        .clearfix:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap" class="clearfix">
+        <div id="box"></div>
+        <!--<div style="clear: both"></div>-->
+        <!--<br clear="all">-->
+    </div>
+</body>
+</html>

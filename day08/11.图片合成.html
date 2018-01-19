@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            text-align: center;
+        }
+        #canvas{
+            background: rgba(200,0,0,0.3);
+
+        }
+
+    </style>
+</head>
+<body>
+
+<canvas id="canvas" width="500" height="300">1111</canvas>
+
+</body>
+<script type="text/javascript">
+    var canvas = document.getElementById('canvas');
+
+    //获取上下文
+    var painting = canvas.getContext('2d');
+    painting.beginPath();
+
+    //目标图像 = 您已经放置在画布上的绘图
+    painting.fillStyle = 'rgba(255,0,0,1)';
+    painting.fillRect(50,50,200,100);
+
+    //图片合成
+    //默认值：源图像 显示在 目标图像 上
+//    painting.globalCompositeOperation = 'source-over';
+    //源图像位于目标图像之外的部分是不可见的
+//    painting.globalCompositeOperation = 'source-atop';
+    //只有目标图像内的源图像部分会显示，目标图像是透明的。
+//    painting.globalCompositeOperation = 'source-in';
+    //只会显示目标图像之外源图像部分，目标图像是透明的。
+//    painting.globalCompositeOperation = 'source-out';
+
+    //目标图像 在 源图像上方显示
+//    painting.globalCompositeOperation = 'destination-over';
+    //源图像之外的目标图像部分不会被显示
+    //painting.globalCompositeOperation = 'destination-atop';
+    //只有源图像内的目标图像部分会被显示，源图像是透明的。
+   // painting.globalCompositeOperation = 'destination-in';
+    //只有源图像外的目标图像部分会被显示，源图像是透明的。
+    painting.globalCompositeOperation = 'destination-out';
+
+
+    //源图像 = 您打算放置到画布上的绘图
+    painting.fillStyle = 'rgba(0,0,255,1)';
+    painting.fillRect(50,50,100,200);
+</script>
+</html>

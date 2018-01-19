@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            text-align: center;
+        }
+        #canvas{
+            background: rgba(200,0,0,0.3);
+
+            /*width: 500px;*/
+            /*height: 300px;*/
+        }
+
+        /*
+            canvas默认大小：300*150
+            inline_block
+        */
+    </style>
+</head>
+<body>
+
+<canvas id="canvas" width="500" height="300">您的浏览器不支持</canvas>
+
+</body>
+<script type="text/javascript">
+    var canvas = document.getElementById('canvas');
+
+    //定义画笔 === 获取上下文
+    var painting = canvas.getContext('2d');
+
+    //描边矩形strokeRect
+    //参数1，参数2：矩形起始点坐标（x,y）
+    //参数3，参数4：宽度，高度
+    painting.lineWidth = '40';
+    painting.strokeStyle = 'yellow';
+    painting.strokeRect(50,50,100,100);
+
+    painting.fillStyle = 'rgba(0,0,0,0.3)';
+    painting.fillRect(50,50,100,100);
+
+</script>
+</html>

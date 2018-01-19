@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        /*
+            媒体选择器 空格问题 --- 注意
+        */
+        input{
+            outline: none;
+            /*清除默认样式*/
+            /*-webkit-appearance: none;*/
+            /*-moz-appearance: none;*/
+            /*appearance: none;*/
+        }
+        body{
+            background-image: url("img/homeImg.png");
+            background-repeat: no-repeat;
+        }
+        #header{
+            display: flex;
+            background: #88C5E1;
+            border-bottom: 5px solid #54ABD4;
+            padding: 10px 0;
+        }
+        #logo{
+            width: 25%;
+            height: 40px;
+            /*background: deeppink;*/
+            text-align: center;
+        }
+        #logo img{
+            height: 100%;
+            display: none;
+        }
+        @media screen and (max-width: 768px){
+            #logo img[src='img/Brand-S.png']{
+                display: inline-block;
+            }
+        }
+        @media screen and (min-width: 768px) and (max-width: 1024px){
+            #logo img[src='img/Brand-M.png']{
+                display: inline-block;
+            }
+            #logo{
+                width: 15%;
+            }
+        }
+        @media screen and (min-width: 1024px){
+            #logo img[src='img/Brand.png']{
+                display: inline-block;
+            }
+        }
+        /*搜索*/
+        #search{
+            width: 50%;
+            height: 40px;
+            /*background: deeppink;*/
+        }
+        input[type='text']{
+            float: left;
+            box-sizing: border-box;
+            width: 80%;
+            height: 40px;
+            border-radius: 10px 0 0 10px;
+            border: 1px solid #CCCCCC;
+        }
+        input[type='submit']{
+            float: left;
+            width: 20%;
+            height: 40px;
+            box-sizing: border-box;
+            border-radius: 0 10px 10px 0;
+            border: 1px solid #CCCCCC;
+        }
+        @media screen and (min-width: 768px) and (max-width: 1024px){
+            #search{
+                width: 60%;
+            }
+        }
+        @media screen and (max-width: 768px){
+            #search{
+                width: 70%;
+            }
+        }
+        /*右边*/
+        #right{
+            width: 25%;
+            height: 40px;
+            /*background: deeppink;*/
+            display: flex;
+            justify-content: center;
+        }
+        #navs{
+            width: 70%;
+            /*background: yellow;*/
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        #navs a{
+            text-decoration: none;
+            color: #fff;
+            font-size: 14px;
+        }
+        #btn{
+            display: none;
+        }
+        @media screen and (max-width: 768px){
+            #navs{
+                display: none;
+            }
+
+            #btn{
+
+                display: block;
+                border-radius: 4px;
+                padding: 9px 10px;
+                border: 1px solid #ddd;
+                background: #88c5e1;
+                /*background: #debe0b;*/
+            }
+            #btn span{
+                display: block;
+                width: 22px;
+                height: 2px;
+                background: #888;
+                margin-bottom: 5px;
+            }
+            #btn span:last-child{
+                margin-bottom:0;
+            }
+            #btn:hover{
+                background: #9799a0;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <div id="logo">
+            <img src="img/Brand.png" alt=""><!--大-->
+            <img src="img/Brand-M.png" alt=""><!--中-->
+            <img src="img/Brand-S.png" alt=""><!--小-->
+        </div>
+        <form id="search">
+            <input type="text" placeholder="请输入搜索内容">
+            <input type="submit" value="搜索">
+        </form>
+        <div id="right">
+            <nav id="navs">
+                <a href="##">首页</a>
+                <a href="##">课程</a>
+                <a href="##">公告</a>
+                <a href="##">登录</a>
+            </nav>
+            <button id="btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+        </div>
+    </header>
+
+
+</body>
+</html>

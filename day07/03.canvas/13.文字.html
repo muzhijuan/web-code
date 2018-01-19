@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            text-align: center;
+        }
+        #canvas{
+            background: rgba(200,0,0,0.3);
+
+            /*width: 500px;*/
+            /*height: 300px;*/
+        }
+
+        /*
+            canvas默认大小：300*150
+            inline_block
+        */
+    </style>
+</head>
+<body>
+
+<canvas id="canvas" width="500" height="300">您的浏览器不支持</canvas>
+
+</body>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">
+    var canvas = document.getElementById('canvas');
+
+    //定义画笔 === 获取上下文
+    var painting = canvas.getContext('2d');
+    //抬笔工作
+    painting.beginPath();
+
+    //水平居中
+//    painting.textAlign = 'start';/*默认值*/
+//    painting.textAlign = 'center';
+//    painting.textAlign = 'end';
+
+    //垂直对齐
+    painting.textBaseline = 'top';
+    painting.textBaseline = 'hanging';
+
+    painting.textBaseline = 'middle';
+
+    painting.textBaseline = 'bottom';
+    painting.textBaseline = 'alphabetic';/*默认值*/
+
+
+    //文字
+    painting.font = 'bold 50px 微软雅黑';
+//    painting.fillStyle = 'blue';
+//    painting.fillText('a枣树',250,80);
+
+    //镂空字
+    painting.strokeText('a枣树',250,80);
+
+
+    painting.beginPath();
+    painting.fillStyle = 'red';
+    painting.fillRect(250,80,300,2);
+
+</script>
+</html>

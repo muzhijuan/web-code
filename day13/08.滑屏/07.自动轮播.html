@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"/>
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			html,body{
+				height: 100%;
+				overflow: hidden;
+			}
+			#wrap{
+				position: relative;
+			}
+			#list{
+				position: absolute;
+				top: 0;
+				left: 0;
+				list-style: none;
+				overflow: hidden;
+				/*width: 500%;*/
+			}
+			#list li{
+				float: left;				
+				/*width: 20%;*/
+			}
+			#list li img{
+				display: block;
+				width: 100%;
+			}
+			#icons{
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				height: 10px;
+				line-height: 10px;
+				text-align: center;
+				/*background: red;*/
+			}
+			#icons span{
+				display: inline-block;
+				vertical-align: top;
+				width: 10px;
+				height: 10px;
+				border-radius: 50%;
+				background: gray;
+			}
+			#icons .active{
+				background:deeppink ;
+			}			
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<ul id="list">
+				<li>
+					<a href="###">
+						<img src="img/1.jpg"/>
+					</a>
+				</li>
+				<li>
+					<a href="###">
+						<img src="img/2.jpg"/>
+					</a>
+				</li>
+				<li>
+					<a href="###">
+						<img src="img/3.jpg"/>
+					</a>
+				</li>
+				<li>
+					<a href="###">
+						<img src="img/4.jpg"/>
+					</a>
+				</li>
+				<li>
+					<a href="###">
+						<img src="img/5.jpg"/>
+					</a>
+				</li>
+			</ul>
+			<div id="icons">
+				<span class="active"></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/transformCss.js"></script>
+	<script type="text/javascript">
+		//取消默认行为
+		document.addEventListener('touchstart',function(event){
+			event.preventDefault();
+		});
+		
+		window.onload = function(){
+			
+			//获取元素
+			var wrap = document.getElementById('wrap');
+			var list = document.getElementById('list');
+			//添加li
+			list.innerHTML += list.innerHTML;			
+			var liNodes = document.querySelectorAll('#list li');
+			var spanNodes = document.querySelectorAll('#icons span');
+			
+			//布局
+			var styleN = document.createElement('style');
+			styleN.innerHTML = '#list{width: '+ liNodes.length +'00%;}';
+			styleN.innerHTML += '#list li{width: '+ 100/liNodes.length +'%;}';
+			styleN.innerHTML += '#wrap{height: '+ liNodes[0].offsetHeight +'px;}';
+			document.head.appendChild(styleN);
+			
+			//滑动
+			//元素初始位置
+			var eleX = 0;
+			//手指初始位置
+			var startX = 0;
+			
+						
+			wrap.addEventListener('touchstart',function(event){
+				var touch = event.changedTouches[0];
+				
+				//清除过渡
+				list.style.transition = 'none';
+				
+				var left = transformCss(list,'translateX');				
+				var now = Math.round(-left/document.documentElement.clientWidth);
+				//无缝
+				//now == 0   now=5
+				//now == 9   now=4
+				if(now == 0){
+					now = spanNodes.length;
+				}else if(now == liNodes.length-1){
+					now = spanNodes.length -1;
+				};
+//				console.log(now);
+				//真正的跳转
+				transformCss(list,'translateX',-now*document.documentElement.clientWidth);
+				
+				
+				
+				//元素初始位置  == 读
+				eleX = transformCss(list,'translateX');
+				//console.log(eleX);
+				
+				//手指初始位置
+				startX = touch.clientX;
+			});
+			wrap.addEventListener('touchmove',function(event){
+				var touch = event.changedTouches[0];
+				//手指结束位置
+				var endX = touch.clientX;
+				//手指距离差
+				var disX = endX - startX;
+				
+				//元素位置确定  == 写
+				transformCss(list,'translateX',eleX + disX);
+				
+				//console.log(eleX + disX);
+							
+			});
+			//图片跳转
+			wrap.addEventListener('touchend',function(){
+				//图片索引下标
+				var now = 0;		
+				//读
+				var left = transformCss(list,'translateX');
+				//console.log(left)
+				
+				now = Math.round(-left/document.documentElement.clientWidth);
+				
+				//范围限定
+//				if(now < 0){
+//					now = 0;
+//				}else if(now > spanNodes.length-1){
+//					now = spanNodes.length-1;
+//				};
+				
+				//过渡
+				list.style.transition = '1s';
+				
+//				console.log(now);
+				//元素位移 == 写
+				transformCss(list,'translateX',-now * document.documentElement.clientWidth)
+			
+				//同步小圆点
+				for(var i=0;i<spanNodes.length;i++){
+					//给所有span添加 class
+					//spanNodes[i].setAttribute('class','')
+					spanNodes[i].className = '';
+				};
+				spanNodes[now%spanNodes.length].className = 'active';
+				
+			});
+			
+			
+			//自动轮播
+			var autoFlag = 0;
+			setInterval(function(){
+				//无缝
+				if(autoFlag == liNodes.length-1){
+					autoFlag = spanNodes.length-1
+				};
+				//清除过渡
+				list.style.transition = 'none';
+				transformCss(list,'translateX',-autoFlag*document.documentElement.clientWidth);
+				
+				setTimeout(function(){					
+					//正常自动轮播
+					autoFlag++;
+					list.style.transition = '0.5s';
+					transformCss(list,'translateX',-autoFlag*document.documentElement.clientWidth);
+					//小圆点
+					for(var i=0;i<spanNodes.length;i++){
+						//给所有span添加 class					
+						spanNodes[i].className = '';
+					};
+					spanNodes[autoFlag%spanNodes.length].className = 'active';
+			
+				},20);
+				
+			},1000);
+			
+			
+			
+		};
+		
+		
+	</script>
+</html>

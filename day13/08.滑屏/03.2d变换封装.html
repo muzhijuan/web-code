@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#box{
+				width: 200px;
+				height: 200px;
+				background: deeppink;	
+				
+				/*transform: translateX(200px) scale(0.5);*/		
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			
+		</div>
+	</body>
+	<script type="text/javascript">
+		var box = document.getElementById('box');
+		
+		//赋值操作 == 写
+		transformCss(box,'translateX',200);
+		transformCss(box,'scale',0.5);
+		transformCss(box,'rotate',45);
+		
+		//读取操作
+//		transformCss(box,'translateX');
+		
+		function transformCss(node,name,value){
+			//创建对象，用来保存属性名与属性值
+			if(!node.aaa){
+				node.aaa = {};
+//				console.log(node.aaa)
+			};
+			
+			//
+			var result = '';
+			//写
+			if(arguments.length > 2){
+				//属性名与属性值 放在 node.aaa 对象中
+				node.aaa[name] = value;//{translateX: 200, scale: 0.5}
+//				console.log(node.aaa)
+				//node.aaa.name  ==== node.aaa['name']
+				//枚举对象中的属性
+				for (var i in node.aaa) {
+					switch (i){
+						case 'translateX':
+						case 'translateY':
+						case 'translateZ':
+						case 'translate':
+							///'translateX(200px)'
+							result += i + '('+ node.aaa[i] +'px) ';
+							break;
+						case 'scaleX':
+						case 'scaleY':
+						case 'scale':
+							///'scale(0.5)'
+							result += i + '('+ node.aaa[i] +') ';
+							break;
+						case 'rotate':
+						case 'skewX':
+						case 'skewY':
+						case 'skew':
+							///'rotate(360deg)'
+							result += i + '('+ node.aaa[i] +'deg) ';
+							break;	
+														
+					};
+				};
+				
+				node.style.transform = result;
+				
+			}//else{
+				//读
+			//}
+			
+		};
+		
+	</script>
+</html>

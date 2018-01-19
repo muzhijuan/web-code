@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            text-align: center;
+        }
+        #canvas{
+            background: rgba(200,0,0,0.3);
+
+        }
+
+    </style>
+</head>
+<body>
+
+<canvas id="canvas" width="500" height="300">1111</canvas>
+
+</body>
+<script type="text/javascript">
+    var canvas = document.getElementById('canvas');
+
+    //获取上下文
+    var painting = canvas.getContext('2d');
+
+//    painting.beginPath();
+//    painting.fillStyle = 'yellow';
+//    painting.fillRect(0,0,100,150);
+//
+//
+//    painting.beginPath();
+//    painting.strokeStyle = 'blue';
+//    painting.lineWidth = '20';
+//    painting.strokeRect(150,10,100,150);
+
+//    painting.beginPath();
+//    painting.fillStyle = 'yellow';
+//    painting.strokeStyle = 'blue';
+//    painting.lineWidth = '20';
+//    painting.rect(0,0,100,150);
+//    painting.fill();
+//    painting.stroke();
+
+//    painting.beginPath();
+//    painting.moveTo(10,10);
+//    painting.lineTo(100,100);
+//    painting.stroke();
+
+//    painting.beginPath();
+//    painting.fillStyle = 'yellow';
+//    painting.arc(150,150,50,0,2*Math.PI,false);
+//    painting.stroke();
+//    painting.fill();
+
+    painting.beginPath();
+
+//    painting.textAlign = 'start';
+//    painting.textAlign = 'center';
+//    painting.textAlign = 'end';
+    painting.textBaseline = 'alphabetic';
+    painting.textBaseline = 'bottom';
+    painting.textBaseline = 'top';
+    painting.textBaseline = 'hanging';
+    painting.textBaseline = 'middle';
+
+
+    painting.font = 'bold 50px 黑体';
+//    painting.fillText('c枣树',50,50);
+    painting.strokeText('c枣树',50,50);
+
+    painting.beginPath();
+    painting.fillStyle = 'blue';
+    painting.fillRect(50,50,300,2);
+
+</script>
+</html>

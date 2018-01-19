@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width" />
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#box{
+				width: 300px;
+				height: 200px;
+				background: deeppink;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			在我的后园，可以看见墙外有两株树，一株是枣树，还有一株也是枣树。 这上面的夜的天空，奇怪而高，我生平没有见过这样奇怪而高的天空。他仿佛要离
+开人间而去，使人们仰面不再看见。然而现在却非常之蓝，闪闪地?着几十个星星的眼，冷眼。他的口角上现出微笑，似乎自以为大有深意，而将繁霜洒在我
+的园里的野花草上。
+		</div>
+	</body>
+	<!--
+		手指触屏屏幕   ontouchstart
+		手指在屏幕上发生移动  ontouchmove
+		手指离开屏幕 ontouchend		
+	-->
+	<script type="text/javascript">
+		var box = document.getElementById('box');
+		
+		//禁止浏览器默认行为
+		//dom2
+		//event.preventDefault();
+		//dom0
+		//return false;
+		
+		//dom2
+		document.addEventListener('touchstart',function(event){
+			event.preventDefault();
+		});
+		
+	</script>
+</html>

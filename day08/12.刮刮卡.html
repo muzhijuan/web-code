@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            text-align: center;
+        }
+        #canvas{
+            background-image: url("img/img21.jpg");
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+
+    </style>
+</head>
+<body>
+
+<canvas id="canvas" width="500" height="300">1111</canvas>
+
+</body>
+<script type="text/javascript">
+    var canvas = document.getElementById('canvas');
+
+    //获取上下文
+    var painting = canvas.getContext('2d');
+    painting.beginPath();
+
+//    //目标图像 = 您已经放置在画布上的绘图
+    painting.fillStyle = 'rgba(255,0,0,1)';
+    painting.fillRect(0,0,500,300);
+
+//    //图片合成
+
+//    //只有源图像外的目标图像部分会被显示，源图像是透明的。
+    painting.globalCompositeOperation = 'destination-out';
+
+
+    canvas.onmousemove = function (event) {
+        var offsetLeft = event.offsetX;
+        var offsetTop = event.offsetY;
+
+        //源图像 = 您打算放置到画布上的绘图
+        painting.beginPath();
+        painting.fillStyle = 'rgba(0,0,255,1)';
+//        painting.fillRect(50,50,100,200);
+        painting.arc(offsetLeft,offsetTop,20,0,2*Math.PI);
+        painting.fill();
+    };
+
+
+
+</script>
+</html>

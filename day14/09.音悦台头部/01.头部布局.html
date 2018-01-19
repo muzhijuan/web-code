@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"/>
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+	</head>
+	<body>
+		<div id="wrap">
+			<header id="header">
+				<!--头部上半部-->
+				<div id="headerTop">
+					<!--logo-->
+					<h1 id="logo">
+						<a href="###">
+							<img src="img/logo.png"/>
+						</a>
+					</h1>
+					<!--菜单按钮-->
+					<a href="###" id="menuBtn" class="menuBtnClose"></a>
+					<!--按钮区域-->
+					<div id="navs">
+						<a href="###" id="searchBtn">搜索</a>
+						<a href="###">登录</a>
+						<a href="###">注册</a>
+					</div>
+				</div>
+				<!--头部下半部-->
+				<form id="search">
+					<input type="text" placeholder="请输入内容。。。"/>
+					<input type="submit" value="搜索"/>
+				</form>
+				<!--遮罩层-->
+				<ul id="list">
+					<li>
+						<a href="javascript:;">首页</a>
+					</li>
+					<li>
+						<a href="javascript:;">MV</a>
+					</li>
+					<li>
+						<a href="javascript:;">悦单</a>
+					</li>
+					<li>
+						<a href="javascript:;">V榜</a>
+					</li>
+					<li>
+						<a href="javascript:;">音悦</a>
+					</li>
+					<li>
+						<a href="javascript:;">商城</a>
+					</li>
+					<li>
+						<a href="javascript:;">节目</a>
+					</li>
+					<li>
+						<a href="javascript:;">饭团</a>
+					</li>
+					<li>
+						<a href="javascript:;">资讯</a>
+					</li>
+					<li>
+						<a href="javascript:;">我的家</a>
+					</li>
+					<li>
+						<a href="javascript:;">APP下载</a>
+					</li>
+					<li>
+						<a href="javascript:;">热门应用</a>
+					</li>
+				</ul>
+			</header>
+			
+			
+		</div>		
+	</body>
+	<script type="text/javascript">
+		//阻止默认行为
+		document.addEventListener('touchstart',function(event){
+			event.preventDefault();
+		});
+		
+		//rem适配
+		(function(){
+			var width = document.documentElement.clientWidth;
+			var styleNode = document.createElement('style');
+			styleNode.innerHTML = 'html{font-size: '+ width/16 +'px !important;}';
+			document.head.appendChild(styleNode);
+		})();
+		
+		
+		
+		
+		
+		
+		
+		
+	</script>
+</html>

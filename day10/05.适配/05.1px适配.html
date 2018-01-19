@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			
+			#box{
+				width: 8rem;
+				height: 8rem;
+				
+				border: 1px solid ;
+			}
+			
+		</style>
+		<!--
+			布局元素单位为rem
+			边框元素单位 px
+			
+			initial-scale = 0.5
+			
+			布局元素 * 2
+		-->
+	</head>
+	<body>	
+		<div id="box">
+			
+		</div>
+	</body>
+	
+	<script type="text/javascript">
+		var width = document.documentElement.clientWidth;//375
+		
+		var dpr = window.devicePixelRatio || 1;
+		var scale = 1/dpr;
+		var meta = document.querySelector('meta[name="viewport"]')
+		meta.setAttribute('content','width=device-width,initial-scale='+ scale +',user-scalable=no')
+		
+		
+		var styleN = document.createElement('style');
+		styleN.innerHTML = 'html{font-size: '+ width/16*dpr +'px !important;}';
+		document.head.appendChild(styleN);
+	</script>
+</html>

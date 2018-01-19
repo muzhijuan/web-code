@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            margin: 200px auto 0;
+            width: 200px;
+            height: 200px;
+            background: pink;
+
+            /*box-shadow: 水平方向偏移量 垂直方向偏移量 模糊程度 扩展程度 颜色 是否具有内阴影*/
+            box-shadow: 10px 0 0 0 blue;
+            box-shadow: 0px 10px 0 0 blue;
+            box-shadow: 0px 0px 10px 0 blue;
+            box-shadow: 0px 0px 0px 10px blue;
+            box-shadow: 0px 0px 10px 50px blue;
+
+            /*box-shadow: 0 0 10px 0px blue inset ;*/
+            /*box-shadow: 0px 0 0px 0px blue inset ;*/
+
+            box-shadow: 0 0 100px 0px blue ;
+
+            box-shadow: 0 0 100px 0px blue inset;
+        }
+        #box2{
+            margin-left: 200px;
+            width: 200px;
+            height: 200px;
+            background: yellowgreen;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">枣树，还有一株也是枣树</div>
+    <!--<div id="box2"></div>-->
+</body>
+</html>

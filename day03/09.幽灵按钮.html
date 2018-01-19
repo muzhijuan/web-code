@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #wrap{
+            position: relative;
+            margin: 100px auto;
+            width: 300px;
+            height: 80px;
+            background: #AEB4D6;
+            color: #fff;
+            text-align: center;
+            line-height: 80px;
+            font-size: 50px;
+            font-weight: bold;
+            text-transform: uppercase;
+
+            transition: 3s;
+
+        }
+        #box_top,#box_bottom{
+            position: absolute;
+            width:0px;
+            height: 10px;
+            background: #AEB4D6;
+
+            transition: 3s;
+        }
+        #box_top{
+            top:0;
+            left: 0;
+        }
+        #box_bottom{
+            right: 0;
+            bottom: 0;
+         }
+        #wrap:hover{
+            color: #AEB4D6;
+            background: #fff;
+        }
+        #wrap:hover #box_top,#wrap:hover #box_bottom{
+            width: 300px;
+        }
+
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <div id="box_top"></div>
+    html5
+    <div id="box_bottom"></div>
+</div>
+</body>
+</html>

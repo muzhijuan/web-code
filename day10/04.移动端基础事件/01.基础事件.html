@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width" />
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#box{
+				width: 200px;
+				height: 200px;
+				background: deeppink;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			
+		</div>
+	</body>
+	<!--
+		手指触屏屏幕   ontouchstart
+		手指在屏幕上发生移动  ontouchmove
+		手指离开屏幕 ontouchend		
+	-->
+	<script type="text/javascript">
+		var box = document.getElementById('box');
+		
+		//dom0 在部分模拟器中是不支持的，所以不利于我们开发
+//		box.ontouchstart = function(){
+//			console.log('start');
+//		};
+//		box.ontouchmove = function(){
+//			console.log('move');
+//		};
+//		box.ontouchend = function(){
+//			console.log('end');
+//		};
+
+		//dom2
+		box.addEventListener('touchstart',function(){
+			console.log('start');
+		});
+		box.addEventListener('touchmove',function(){
+			console.log('move');
+		});
+		box.addEventListener('touchend',function(){
+			console.log('end');
+		});
+		
+	</script>
+</html>

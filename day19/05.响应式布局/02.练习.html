@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #wrap{
+            height: 200px;
+            display: flex;
+        }
+        #left{
+            flex-grow: 1;
+            background: deeppink;
+        }
+        #right{
+            flex-grow: 1;
+            background: yellowgreen;
+        }
+        @media screen and (max-width: 768px){
+            #left{
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <div id="left">1</div>
+    <div id="right">2</div>
+</div>
+</body>
+<script type="text/javascript">
+    window.onload = function () {
+        var box = document.getElementById('box');
+
+
+    };
+
+
+</script>
+</html>

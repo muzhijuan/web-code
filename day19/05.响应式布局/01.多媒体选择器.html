@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /*媒体选择器 == 媒体查询*/
+        /* 屏幕小于等于768px*/
+        @media screen and (max-width: 768px){
+            #box{
+                width: 200px;
+                height: 200px;
+                background: deeppink;
+            }
+        }
+        /*屏幕大于等于768px*/
+        @media screen and (min-width: 768px){
+            #box{
+                width: 200px;
+                height: 200px;
+                background: yellowgreen;
+            }
+        }
+
+        /*在 768px 与 1024px 之间*/
+        @media screen and (min-width: 768px) and (max-width: 1024px){
+            #box{
+                width: 200px;
+                height: 200px;
+                background: green;
+            }
+        }
+
+    </style>
+    <!--
+    自适应布局：
+        布局不变（等比）
+
+    响应式布局：
+        随着窗口大小改变，布局发生改变
+
+    -->
+</head>
+<body>
+
+<div id="box"></div>
+
+</body>
+<script type="text/javascript">
+    window.onresize = function () {
+        console.log(document.documentElement.clientWidth);
+    };
+
+
+</script>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #list{
+            list-style: none;
+            margin: 100px;
+        }
+        #list a{
+            text-decoration: none;
+        }
+        #list li{
+            line-height: 2.5;
+        }
+        a[href$='.doc']:before{
+            content: '';
+            width: 24px;
+            height: 24px;
+            display: inline-block;
+            vertical-align: middle;
+            background-image: url("img/icon_doc.png");
+            background-repeat: no-repeat;
+        }
+        a[href$='.xls']:before{
+            content: '';
+            width: 24px;
+            height: 24px;
+            display: inline-block;
+            vertical-align: middle;
+            background-image: url("img/icon_xls.png");
+            background-repeat: no-repeat;
+        }
+        a[href$='.pdf']:before{
+            content: '';
+            width: 24px;
+            height: 24px;
+            display: inline-block;
+            vertical-align: middle;
+            background-image: url("img/icon_pdf.png");
+            background-repeat: no-repeat;
+        }
+        a[href$='.mpg']:before{
+            content: '';
+            width: 24px;
+            height: 24px;
+            display: inline-block;
+            vertical-align: middle;
+            background-image: url("img/icon_mpg.png");
+            background-repeat: no-repeat;
+        }
+        a[href$='.txt']:before{
+            content: '';
+            width: 24px;
+            height: 24px;
+            display: inline-block;
+            vertical-align: middle;
+            background-image: url("img/icon_txt.png");
+            background-repeat: no-repeat;
+        }
+        #list span{
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+<ul id="list">
+    <li><a href="test.doc"><span>世界真其美妙.doc</span></a></li>
+    <li><a href="test.xls"><span>销售报表.xls</span></a></li>
+    <li><a href="test.pdf"><span>JS权威指南.pdf</span></a></li>
+    <li><a href="test.mpg"><span>南山南.mp3</span></a></li>
+    <li><a href="test.txt"><span>1111111.txt</span></a></li>
+    <li><a href="box.doc"><span>aaaaaa.doc</span></a></li>
+</ul>
+</body>
+</html>
